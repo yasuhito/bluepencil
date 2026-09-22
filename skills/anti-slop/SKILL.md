@@ -1,30 +1,60 @@
 ---
 name: anti-slop
-description: Final pass that removes the tells of machine-written prose from any text. Run on every edit and rewrite before replying.
+description: Final pass that removes the tells of machine-written prose from any text. Run on every edit and rewrite before replying, and whenever someone asks for a slop check.
 ---
 
 # anti-slop
 
-Read the text once more, only looking for these. Fix each one you find.
+Every draft you hand back passes through here first.
 
-## Cut on sight
-- Openers: "Great question", "Certainly", "I hope this finds you well", "In today's ...", "As we all know".
-- Closers: "I hope this helps", "Let me know if you have any questions" (unless the profile says otherwise), "Happy to help".
-- Filler adverbs: very, really, truly, actually, basically, simply, just (when it means nothing).
-- Words that mark AI prose: delve, leverage, robust, seamless, elevate, unlock, empower, journey, landscape, tapestry, testament, game-changer, cutting-edge, navigate (for non-navigation), foster, harness, crucial, vital, pivotal.
-- Hedges stacked: "may potentially", "it is possible that perhaps".
+## Process
 
-## Patterns
-- Three-item lists used for rhythm rather than content → keep the items that carry information.
-- Em-dash chains — like — this → commas or full stops.
-- Every paragraph the same length → vary.
-- A question the writer answers themselves in the next sentence → state the answer.
-- "Not only X but also Y" → "X and Y".
-- Sentences that begin with "It's worth noting" / "Importantly" → delete the opener.
-- Title Case Headings In Body Text → sentence case, per profile.
-- Emoji or exclamation marks not in the profile → remove.
+1. **Scan.** Read the text once for each reference file below. Note every hit.
+2. **Rewrite.** Fix each one. Keep the meaning and the author's intent.
+3. **Self-audit.** Ask: "What in this still reads as machine-written?" Fix what
+   you find. Then stop.
 
-## Keep
-- The author's deliberate quirks listed in `voice/PROFILE.md`.
-- Technical terms the audience uses.
-- Anything you are unsure about. When in doubt, stet (leave it).
+Rule numbers are stable. Cite them in your change list: "rule 14, mid-sentence
+colon". A rule that goes away leaves its number empty rather than renumbering
+the rest.
+
+## The rules
+
+Three files, one per kind of tell. Read all three on a first job for a new
+company; after that, read the one the draft is likely to fail.
+
+- [references/vocabulary.md](references/vocabulary.md) — rules 1–19. Words and
+  phrases: AI vocabulary, throat-clearing, fancy ways to say "is", filler,
+  hedging, jargon, business euphemism.
+- [references/structures.md](references/structures.md) — rules 20–39. Shapes:
+  false binaries, rule of three, synonym cycling, false ranges, vague
+  declaratives, false agency, passive voice, narrator-from-a-distance.
+- [references/formatting.md](references/formatting.md) — rules 40–56.
+  Punctuation and layout: em dashes, colons, bold, headings, emoji, curly
+  quotes, nesting, tables, rules against sycophancy in your own reply.
+
+## The one test that catches the rest
+
+**Rule 27.** If a sentence could appear unchanged in another company's
+document, it says nothing about this one. Cut it or replace it with the
+mechanism, the number, or the instruction it was standing in for.
+
+"Our platform helps teams move faster" fails. "Median test time went from 6m40s
+to 2m10s" passes.
+
+## What you do not touch
+
+- Quirks listed in `voice/PROFILE.md`. The profile beats this skill every time.
+  If the company writes "reach out", stop flagging "reach out".
+- Terms the audience actually uses, including jargon that names a real thing.
+- Quotes, code, file paths, and anything inside a fence. Rules about prose do
+  not reach inside them.
+- Anything you are unsure about. When in doubt, stet.
+
+## Sources
+
+Built from three MIT-licensed skills, adapted to bluepencil's format:
+[pstack/unslop](https://github.com/cursor/plugins/tree/main/pstack/skills/unslop)
+(Lauren Tan), [stop-slop](https://github.com/hardikpandya/stop-slop) (Hardik
+Pandya), [unslop](https://github.com/maxgoff/unslop) (Max Goff). Rule numbering
+and the self-audit step follow pstack.

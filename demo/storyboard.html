@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ja">
+<meta charset="utf-8">
+<title>bluepencil demo storyboard v3</title>
+<style>
+  :root { --ink:#1f2430; --mute:#6b7280; --blue:#1d5fd6; --bg:#f3f4f8; --card:#fff; --line:#e3e6ee; --agent:#eef3ff; --human:#f7f7f9; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); font-family: "Inter", "Noto Sans JP", system-ui, sans-serif; color:var(--ink); width:1800px; }
+  header { padding:36px 48px 8px; }
+  header h1 { margin:0; font-size:34px; letter-spacing:-0.5px; }
+  header h1 b { color:var(--blue); }
+  header p { margin:6px 0 0; color:var(--mute); font-size:17px; }
+  .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap:28px; padding:28px 48px 48px; }
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+  .time { display:flex; justify-content:space-between; align-items:center; padding:12px 16px; border-bottom:1px solid var(--line); font-size:14px; color:var(--mute); }
+  .time b { color:var(--ink); font-size:15px; }
+  .screen { padding:14px 16px; min-height:470px; background:#fafbfe; }
+  .hdr { display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--mute); border-bottom:1px dashed var(--line); padding-bottom:8px; margin-bottom:10px; }
+  .hdr .title { font-weight:600; color:var(--ink); font-size:13.5px; }
+  .pill { display:inline-flex; align-items:center; gap:5px; border:1px solid var(--line); border-radius:999px; padding:2px 8px; background:#fff; }
+  .av { width:18px; height:18px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; font-size:10px; color:#fff; font-weight:700; }
+  .ken { background:#0f8a5f; } .mei { background:#c2410c; } .rec { background:#6d28d9; } .bp { background:var(--blue); }
+  .msg { display:flex; gap:8px; margin:8px 0; font-size:12.5px; line-height:1.45; }
+  .msg .body { border-radius:10px; padding:8px 10px; max-width:96%; white-space:pre-wrap; }
+  .msg.h .body { background:var(--human); border:1px solid var(--line); }
+  .msg.a .body { background:var(--agent); border:1px solid #d6e2ff; }
+  .msg .who { font-size:11px; color:var(--mute); margin-bottom:3px; }
+  .miss { background:#fff3c4; border:1px solid #f0d57a; border-radius:4px; padding:0 3px; font-weight:600; }
+  .strike { text-decoration: line-through; color:#9aa0ab; }
+  .card { background:var(--ink); color:#fff; height:470px; display:flex; flex-direction:column; justify-content:center; padding:28px; }
+  .card h2 { margin:0 0 10px; font-size:26px; line-height:1.25; }
+  .card p { margin:0; color:#c9cdd8; font-size:15px; }
+  .card .logo { font-size:42px; font-weight:800; color:#7fa7ff; letter-spacing:-1px; margin-bottom:8px; }
+  .cap { padding:12px 16px 14px; border-top:1px solid var(--line); font-size:13.5px; line-height:1.5; }
+  .cap b { color:var(--blue); }
+  .cap .why { color:var(--mute); font-size:12.5px; margin-top:4px; }
+  .join { text-align:center; font-size:11.5px; color:var(--mute); margin:6px 0; }
+  .join span { background:#fff; border:1px solid var(--line); border-radius:999px; padding:2px 10px; }
+</style>
+<body>
+<header>
+  <h1><b>bluepencil</b> demo storyboard v3 — "Launch day" (約 90 秒)</h1>
+  <p>舞台: Control UI の共有セッション「Copy desk」1 つ。人間 2 人（Ken, Mei）、エージェント 2 体（Recruiter, bluepencil）。青字 = 見せたい利点。</p>
+</header>
+<div class="grid">
+
+  <!-- 1 -->
+  <div class="panel">
+    <div class="time"><b>1. 冒頭カード</b><span>0:00–0:10</span></div>
+    <div class="card">
+      <div class="logo">bluepencil</div>
+      <h2>Launch day.<br>Two founders, one recruiter agent,<br>three things going out today.</h2>
+      <p>One desk everything passes through.</p>
+    </div>
+    <div class="cap"><b>導入。</b>会社の文章が全部 1 か所を通る、という前提を 10 秒で置く。<div class="why">次の画面のヘッダ（所有者 Ken、参加者 Ken + Recruiter）にそのままつながる。</div></div>
+  </div>
+
+  <!-- 2 -->
+  <div class="panel">
+    <div class="time"><b>2. 人が持ち込む</b><span>0:10–0:30</span></div>
+    <div class="screen">
+      <div class="hdr"><span class="title">Copy desk</span><span class="pill">Owner <span class="av ken">K</span> Ken</span><span class="pill">Here <span class="av ken">K</span></span><span class="pill"><span class="av rec">R</span> Recruiter (agent)</span></div>
+      <div class="msg h"><span class="av ken">K</span><div><div class="who">Ken</div><div class="body">Rewrite for email:
+Subject: Following up regarding our previous conversation
+Hi there, I hope this email finds you well! I wanted to reach out and follow up regarding … leveraging our platform … unlock their full potential …</div></div></div>
+      <div class="msg a"><span class="av bp">b</span><div><div class="who">bluepencil</div><div class="body">Subject: 15 minutes next week?
+Hi <span class="miss">[MISSING: recipient name]</span>,
+Following up on our conversation about using <span class="miss">[MISSING: product name]</span> for your team …
+—
+Changes: 1. Subject is now the ask. 2. Cut "finds you well", "leveraging", "unlock" — no facts. 3. …
+Facts: 4 kept, 2 MISSING</div></div></div>
+      <div class="msg h"><span class="av ken">K</span><div><div class="who">Ken</div><div class="body">Product is Qni.</div></div></div>
+      <div class="msg a"><span class="av bp">b</span><div><div class="who">bluepencil</div><div class="body">Filled from Ken, not guessed. One MISSING left: recipient name.</div></div></div>
+    </div>
+    <div class="cap"><b>事実は作らない。</b>穴は [MISSING] のまま人に聞き、人が埋める。<div class="why">bluepencil の利点 1。営業の下書きから決まり文句が消えるのも同時に見せる。</div></div>
+  </div>
+
+  <!-- 3 -->
+  <div class="panel">
+    <div class="time"><b>3. エージェントも同じデスクへ</b><span>0:30–0:50</span></div>
+    <div class="screen">
+      <div class="hdr"><span class="title">Copy desk</span><span class="pill">Owner <span class="av ken">K</span> Ken</span><span class="pill">Here <span class="av ken">K</span></span><span class="pill"><span class="av rec">R</span> Recruiter (agent)</span></div>
+      <div class="msg a"><span class="av rec">R</span><div><div class="who">Recruiter (agent) · via sessions_send</div><div class="body">Rewrite for email:
+Subject: Exciting Update Regarding Your Application!
+Dear Candidate, Thank you so much … we are thrilled to inform you … Please don't hesitate to reach out …</div></div></div>
+      <div class="msg a"><span class="av bp">b</span><div><div class="who">bluepencil</div><div class="body">Subject: Next step: technical interview, Senior Backend Engineer
+Hi <span class="miss">[MISSING: candidate name]</span>,
+We'd like to move you to the next stage …
+Questions? Reply to this email and a human will answer.
+—
+Changes: 1. Subject says what it's for (rule 1). 2. Cut "thrilled", "so much" (rule 9). 3. Reply path added (rule 8) …
+Facts: 7 kept, 2 MISSING</div></div></div>
+      <div class="join"><span>Ken is watching. Nobody typed this one.</span></div>
+    </div>
+    <div class="cap"><b>人が書いても機械が書いても同じ声。</b>別エージェントの依頼が同じセッションに流れ、規則番号つきで直る。<div class="why">マルチプレイヤーの利点 1: 別々の DM ではなく、全部が 1 か所に見える。</div></div>
+  </div>
+
+  <!-- 4 -->
+  <div class="panel">
+    <div class="time"><b>4. 途中から人が入る</b><span>0:50–1:10</span></div>
+    <div class="screen">
+      <div class="hdr"><span class="title">Copy desk</span><span class="pill">Owner <span class="av ken">K</span> Ken</span><span class="pill">Here <span class="av ken">K</span><span class="av mei">M</span> 2</span><span class="pill"><span class="av rec">R</span> Recruiter (agent)</span></div>
+      <div class="join"><span>Mei joined from her phone</span></div>
+      <div class="msg h"><span class="av mei">M</span><div><div class="who">Mei</div><div class="body">Ken's email: ship it. The candidate reply needs a name first.</div></div></div>
+      <div class="msg h"><span class="av ken">K</span><div><div class="who">Ken</div><div class="body">Sent.</div></div></div>
+      <div class="msg a"><span class="av bp">b</span><div><div class="who">bluepencil</div><div class="body">Logged to shipped/LOG.md: 2026-09-24 · email · ken-followup · shipped by Ken.
+I didn't send it. You did.</div></div></div>
+    </div>
+    <div class="cap"><b>途中参加、文脈ごと引き継ぎ。送るのは人。</b>Mei はスクロールも説明も要らず、そのまま判断する。<div class="why">マルチプレイヤーの核（participants / presence）。bluepencil の利点 3（never sends）。</div></div>
+  </div>
+
+  <!-- 5 -->
+  <div class="panel">
+    <div class="time"><b>5. デスクが一度学べば全員に効く</b><span>1:10–1:25</span></div>
+    <div class="screen">
+      <div class="hdr"><span class="title">Copy desk</span><span class="pill">Owner <span class="av ken">K</span> Ken</span><span class="pill">Here <span class="av ken">K</span><span class="av mei">M</span> 2</span><span class="pill"><span class="av rec">R</span> Recruiter (agent)</span></div>
+      <div class="msg h"><span class="av mei">M</span><div><div class="who">Mei</div><div class="body">New rule: we never write "reach out".</div></div></div>
+      <div class="msg a"><span class="av bp">b</span><div><div class="who">bluepencil</div><div class="body">Added to voice/PROFILE.md as rule 11. Applies to everyone at this desk, agents included.</div></div></div>
+      <div class="msg a"><span class="av rec">R</span><div><div class="who">Recruiter (agent) · via sessions_send</div><div class="body">Rewrite for email: … feel free to reach out with any questions …</div></div></div>
+      <div class="msg a"><span class="av bp">b</span><div><div class="who">bluepencil</div><div class="body">… Questions? Reply to this email and a human will answer.
+Changes: 3. <span class="strike">"feel free to reach out"</span> → reply path — rule 11, added by Mei two minutes ago.</div></div></div>
+    </div>
+    <div class="cap"><b>声の規則は個人のメモではなく、共有の 1 ファイル。</b>人が一言足すと、次にエージェントが持ってきた文章にもう効いている。<div class="why">マルチプレイヤーの利点 2 と bluepencil の利点 2（one voice, on disk）が同じ画で出る。</div></div>
+  </div>
+
+  <!-- 6 -->
+  <div class="panel">
+    <div class="time"><b>6. 締めカード</b><span>1:25–1:30</span></div>
+    <div class="card">
+      <div class="logo">bluepencil</div>
+      <h2>The copy desk for everything<br>that leaves your company.</h2>
+      <p>Built on OpenClaw 2.0 shared sessions · MIT<br>github.com/yasuhito/bluepencil<br>aiworthusing.com/agent-index/bluepencil</p>
+    </div>
+    <div class="cap"><b>締め。</b>リンク 2 つ。ナレーションは無し、字幕のみ。<div class="why">応答待ち（各 1〜2 分）は録画を止めて詰める。合計 90 秒前後。</div></div>
+  </div>
+
+</div>
+</body>
+</html>
