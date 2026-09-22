@@ -1,0 +1,10 @@
+drafts/*
+!drafts/.gitkeep
+voice/samples/*
+!voice/samples/.gitkeep
+memory/*
+!memory/.gitkeep
+MEMORY.md
+plow-credentials
+__pycache__/
+.remember/
