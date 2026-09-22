@@ -1,0 +1,12 @@
+Subject: Exciting Update Regarding Your Application!
+
+Dear Candidate,
+
+Thank you so much for taking the time to apply for the Senior Backend Engineer position at our company! We were truly impressed by your background and we are thrilled to inform you that we would love to move forward to the next stage of our hiring process.
+
+As a next step, we would like to invite you to a technical interview with members of our engineering team. The interview will be approximately 60 minutes and will cover system design as well as a collaborative coding exercise. Please don't hesitate to let us know your availability over the coming week, and we will do our very best to accommodate your schedule.
+
+Once again, congratulations on reaching this stage, and we look forward to speaking with you soon!
+
+Warm regards,
+The Talent Acquisition Team
