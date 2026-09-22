@@ -10,3 +10,4 @@ __pycache__/
 .remember/
 demo/*.mp4
 demo/*.gif
+demo/result.txt
