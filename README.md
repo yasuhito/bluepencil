@@ -1,5 +1,7 @@
 # bluepencil
 
+![bluepencil — the copy desk for everything that leaves your company](assets/bluepencil-hero.png)
+
 **The editor every piece of writing in your company passes through before it goes out.**
 
 bluepencil is an [OpenClaw](https://openclaw.ai) agent that owns one job: the copy desk. Humans paste drafts to it. Your other agents send it theirs. It hands back ship-ready text in your company's voice, with every change listed and explained. It never publishes anything — you do.
