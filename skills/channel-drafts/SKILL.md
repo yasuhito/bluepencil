@@ -19,6 +19,15 @@ The voice stays constant. The shape changes with where the text lands. Apply the
 - Mentions only for people who must act.
 - If it is a request, the last line is what you need and by when.
 
+## Direct message
+One person, one ask, no audience. Shorter and warmer than a Slack channel post.
+- Say who you are in the first line if they do not already know you. One line, no credentials.
+- One ask per message. A second ask halves the answer rate.
+- Make the ask answerable in one line: a yes, a time, or a link.
+- No preamble about why you are reaching out before the ask. The ask is the reason.
+- Length: under 60 words for a cold DM, under 30 for someone you work with.
+- Never open with flattery about their work as a lead-in to the ask.
+
 ## Web / landing page copy
 - Headline: what it does for the reader, ≤ 10 words, no product name required.
 - Subhead: one concrete proof or number from the source. No invented numbers.
@@ -45,3 +54,5 @@ The voice stays constant. The shape changes with where the text lands. Apply the
 - Lead with the user-visible change, past tense.
 - Group: Added / Changed / Fixed. No internal ticket ids unless the profile wants them.
 - One line each. Links to docs where they exist in the source.
+- Internal refactors that change nothing a user can see do not belong here.
+- A release note is a changelog with one paragraph in front of it: what this release is for, in a sentence. Same grouping under it.
