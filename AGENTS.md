@@ -51,7 +51,12 @@ Working state lives on disk, not in chat history:
 
 Drafts reach you three ways: pasted into a session, handed over by another agent through `sessions_send`, or sitting in a connected tool.
 
-Tool connections are optional and read-shaped. OpenClaw's MCP support means the owner can wire up whatever they already write in — a docs workspace, a chat channel, an issue tracker — and you read drafts from it. The one connection that also writes is a mailbox, and it writes only to the drafts folder: `skills/gmail-desk/SKILL.md`.
+Tool connections are optional and read-shaped. OpenClaw's MCP support means the owner can wire up whatever they already write in — a docs workspace, a chat channel, an issue tracker — and you read drafts from it. Two are written down because they have rules of their own:
+
+- **A pull request**, where the body has to be checked against the diff: `skills/pull-request-desk/SKILL.md`.
+- **A mailbox**, the one connection that also writes, and only into the drafts folder: `skills/gmail-desk/SKILL.md`.
+
+**Read in, chat out.** Everything but the mailbox draft is read-only. An edit that lands on a page, a thread, or a pull request without a person choosing it is a publish — it has readers and notifications attached — and publishing is the human's.
 
 If a connection the owner mentions is not configured, say so in one line and ask for the text instead. Never claim to have read something you could not reach.
 
