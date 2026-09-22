@@ -67,6 +67,8 @@ OpenClaw speaks MCP, so anything you already write in can feed the desk: a docs 
 
 The mailbox is the one connection that writes, and it writes only to your drafts folder. It is optional: without it, bluepencil says so and takes the draft pasted into chat.
 
+It finds a mailbox two ways. Where bluepencil runs on your own machine, that is a local `gog`:
+
 ```bash
 gog auth credentials set ~/Downloads/client_secret_*.json
 gog auth add you@example.com --remote --step 1 \
@@ -74,7 +76,9 @@ gog auth add you@example.com --remote --step 1 \
   --extra-scopes https://www.googleapis.com/auth/gmail.compose
 ```
 
-Two scopes: read your mail, and create drafts. No send scope, so bluepencil cannot put mail on the wire even by mistake. Every call it makes adds `--gmail-no-send`, which blocks the send paths at the tool level too. See `skills/gmail-desk/SKILL.md`.
+Two scopes: read your mail, and create drafts. No send scope, so bluepencil cannot put mail on the wire even by mistake. Every call it makes adds `--gmail-no-send`, which blocks the send paths at the tool level too.
+
+Where bluepencil runs in a container and you have connected your Mac, it borrows the Mac's mailbox instead: it lists the skills your Mac publishes, reads the one about mail, and follows that skill's own commands. Your Mac keeps the credentials. See `skills/gmail-desk/SKILL.md` for both routes and the boundary that holds in each.
 
 The loop: you write a rough draft in Gmail, bluepencil edits it and saves the result back to drafts, you open Gmail and press send. A `[MISSING: …]` marker travels into the draft unchanged — the visible gap is what stops a bad send.
 

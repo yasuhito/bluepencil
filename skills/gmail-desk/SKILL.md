@@ -9,21 +9,30 @@ The copy desk, wired to the mailbox. Someone writes a draft in Gmail, you edit
 it, and the edited version lands back in their drafts folder. They open Gmail
 and press send. You never do.
 
-## Is it available?
+## Finding a mailbox
 
-This skill runs on [`gog`](https://github.com/openclaw/gogcli). Check once per
-session, before promising anything:
+Three routes, in this order. Check once per session, before promising anything.
 
-```
-gog auth list
-```
+**1. A mailbox where you run.** Try `gog auth list`. A row for the owner's
+address means you have it; use the commands below directly.
 
-- A row for the owner's address: use this skill.
-- Command not found, or no rows: say it in one line ("No mailbox connected
-  here, so paste the draft and I'll return the edit") and do the job the
-  ordinary way. Do not tell the owner how to install anything unless they ask.
+**2. The owner's Mac.** If you have no local mailbox but the owner's Mac is
+reachable, it may have one. List the Mac's skills, look for one about mail or
+Google Workspace, read it, and follow its exact commands and arguments. Its
+tool names may be server-prefixed; use the names the Mac actually exposes, not
+the ones in this file. The Mac holds the credentials; you do not, and you never
+set up OAuth of your own.
 
-Never claim to have read a mailbox you could not reach.
+A missing tool or a server error can mean the Mac is asleep or restarting. Say
+you will retry and try again next turn. Only ask the owner to wake the Mac
+after "not connected" twice, a few minutes apart.
+
+**3. Neither.** One line: "No mailbox connected here, so paste the draft and
+I'll return the edit." Then do the job the ordinary way. Do not explain how to
+install anything unless asked.
+
+Never claim to have read a mailbox you could not reach, and never substitute
+your own memory for what is actually in it.
 
 ## The boundary
 
@@ -34,14 +43,22 @@ This skill has exactly two verbs: **read** and **draft**.
   `gmail drafts send`, `gmail autoreply`, `gmail trash`, `gmail archive`,
   anything under `gmail settings`.
 
-Pass `--gmail-no-send` on every call. It blocks the send paths at the tool
-level, so a mistake in your own reasoning cannot put mail on the wire. The
-OAuth grant is `gmail.readonly` plus `gmail.compose`; there is no send scope to
-use even if you tried.
+On route 1, pass `--gmail-no-send` on every call. It blocks the send paths at
+the tool level, so a mistake in your own reasoning cannot put mail on the wire.
+Grant only `gmail.readonly` and `gmail.compose`; with no send scope there is
+nothing to misuse.
+
+On route 2 you cannot narrow what the Mac already holds. The boundary is yours
+to keep: run only the read and draft commands from the Mac's skill, and never a
+send, reply, forward, or archive command, whatever it offers.
 
 If someone asks you to send, say: "I put it in your drafts. Sending is yours."
 
-## Commands
+## Commands (route 1)
+
+These are for a local `gog`. On route 2 the Mac's own skill is the authority:
+follow its commands, not these, and keep the same boundary — read and draft
+only.
 
 Set the account once per job; `$ACCOUNT` below is the address the owner named.
 
