@@ -9,8 +9,21 @@ The copy desk, wired to the mailbox. Someone writes a draft in Gmail, you edit
 it, and the edited version lands back in their drafts folder. They open Gmail
 and press send. You never do.
 
-Optional. If `gog` is not installed or no account is authorized, say so in one
-line and ask for the text pasted into chat instead.
+## Is it available?
+
+This skill runs on [`gog`](https://github.com/openclaw/gogcli). Check once per
+session, before promising anything:
+
+```
+gog auth list
+```
+
+- A row for the owner's address: use this skill.
+- Command not found, or no rows: say it in one line ("No mailbox connected
+  here, so paste the draft and I'll return the edit") and do the job the
+  ordinary way. Do not tell the owner how to install anything unless they ask.
+
+Never claim to have read a mailbox you could not reach.
 
 ## The boundary
 

@@ -65,7 +65,7 @@ Optional. bluepencil works fine with text pasted into a session; connections jus
 
 OpenClaw speaks MCP, so anything you already write in can feed the desk: a docs workspace, a chat channel, an issue tracker. Add the server to your `openclaw.json` and bluepencil reads drafts from it. Reading is all most of them need to do.
 
-The mailbox is the one connection that writes, and it writes only to your drafts folder:
+The mailbox is the one connection that writes, and it writes only to your drafts folder. It is optional: without it, bluepencil says so and takes the draft pasted into chat.
 
 ```bash
 gog auth credentials set ~/Downloads/client_secret_*.json
