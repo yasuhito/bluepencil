@@ -59,6 +59,59 @@ sessions_send(agentId: "bluepencil", message: "Rewrite for email:\n\n<draft>")
 
 The reply is the finished text first, then a short change list. If bluepencil had to mark anything `[MISSING]`, it says so on the first line after the text.
 
+## Put it in Slack
+
+The desk works best where the writing already happens. In Slack, anyone on the team types `/bluepencil <draft>` in the channel they are already in and the edit comes back in that channel, where the rest of the team can see it.
+
+Five steps, all of which have to be done — missing any one of them fails with a different, unhelpful message.
+
+**1. The Slack app.** [api.slack.com/apps/new](https://api.slack.com/apps/new) → **From a manifest**. Paste [`docs/slack-manifest.json`](docs/slack-manifest.json), then **Create**. It uses Socket Mode, so your Gateway needs no public URL.
+
+**2. Two tokens.** **Basic Information** → **App-Level Tokens** → generate one with the `connections:write` scope; that is the `xapp-` token. Then **OAuth & Permissions** → **Install to Workspace**; that gives you the `xoxb-` token. Store both without putting them in your shell history:
+
+```bash
+openclaw secrets store set SLACK_APP_TOKEN --kind secret --value-file - \
+  --allow-host slack.com --allow-host api.slack.com
+openclaw secrets store set SLACK_BOT_TOKEN --kind secret --value-file - \
+  --allow-host slack.com --allow-host api.slack.com
+```
+
+Each waits on stdin: paste the token, press enter, then Ctrl-D.
+
+**3. Point Slack at bluepencil.** `bindings` is a whole-array replacement, so include the routes you already have alongside the new one.
+
+```json5
+{
+  channels: {
+    slack: {
+      enabled: true,
+      mode: "socket",
+      appToken: { source: "store", provider: "default", id: "SLACK_APP_TOKEN" },
+      botToken: { source: "store", provider: "default", id: "SLACK_BOT_TOKEN" },
+      groupPolicy: "open",            // any channel it is invited to
+      allowFrom: ["U0123ABCDEF"],     // who may use the slash command
+      slashCommand: { enabled: true, name: "bluepencil", ephemeral: false },
+    },
+  },
+  bindings: [
+    // ...your existing bindings...
+    { agentId: "bluepencil", match: { channel: "slack" } },
+  ],
+}
+```
+
+`ephemeral: false` posts the edit into the channel. Set it to `true` if the edit should be visible only to whoever asked.
+
+**4. Approve yourself for DMs.** Message the bot once. It replies with a pairing code; run what it tells you:
+
+```bash
+openclaw pairing approve slack <code>
+```
+
+**5. Restart-free, but not instant.** Slack config changes wait for in-flight work to finish before the channel reloads. Give it a few seconds before the first test.
+
+Two gates, not one: pairing covers DMs, `allowFrom` covers the slash command. Approving one does not approve the other, and each refuses with its own message — "access not configured" for DMs, "You are not authorized to use this command" for the command. Your Slack user id is in the DM refusal, or under your profile in Slack.
+
 ## Connections
 
 Optional. bluepencil works fine with text pasted into a session; connections just remove the copy-paste.
