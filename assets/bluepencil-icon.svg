@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- C2-2: 挿入記号（キャレット）。行の切れ目に ∧ を書き入れる -->
+  <defs><clipPath id="r"><rect width="512" height="512" rx="112"/></clipPath></defs>
+  <rect width="512" height="512" rx="112" fill="#F4F1EA"/>
+  <g clip-path="url(#r)">
+  <line x1="88" y1="190" x2="320" y2="190" stroke="#B9BDC5" stroke-width="36" stroke-linecap="round"/>
+  <line x1="88" y1="290" x2="172" y2="290" stroke="#B9BDC5" stroke-width="36" stroke-linecap="round"/>
+  <line x1="246" y1="290" x2="272" y2="290" stroke="#B9BDC5" stroke-width="36" stroke-linecap="round"/>
+  <path d="M170 386 L 209 314 L 248 386" fill="none" stroke="#2F6BFF" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <g transform="translate(248 386) rotate(-45)">
+    <path d="M0 0 L 80 -40 L 80 40 Z" fill="#DCE5FF"/>
+    <path d="M0 0 L 26 -13 L 26 13 Z" fill="#12308F"/>
+    <rect x="80" y="-40" width="400" height="80" fill="#2F6BFF"/>
+    <rect x="80" y="-13" width="400" height="26" fill="#2458DB"/>
+  </g>
+  </g>
+</svg>
