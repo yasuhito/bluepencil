@@ -1,0 +1,17 @@
+#!/bin/sh
+set -eu
+# Exercise the actual initializer in a disposable image-probe container.
+/opt/bluepencil/start true
+workspace=/var/lib/plow/workspace
+test "$AGENT_ID" = bluepencil
+test -r "$workspace/skills/edit/SKILL.md"
+test -r /opt/bluepencil/SOUL.md
+grep -q 'Company voice profile' "$workspace/voice/PROFILE.md"
+printf 'probe voice\n' > "$workspace/voice/PROFILE.md"
+printf 'probe shipped\n' > "$workspace/shipped/LOG.md"
+printf 'probe draft\n' > "$workspace/drafts/probe.md"
+/opt/bluepencil/start true
+grep -qx 'probe voice' "$workspace/voice/PROFILE.md"
+grep -qx 'probe shipped' "$workspace/shipped/LOG.md"
+grep -qx 'probe draft' "$workspace/drafts/probe.md"
+exec /opt/plow/probe

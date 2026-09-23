@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+workspace=/var/lib/plow/workspace
+mkdir -p "$workspace/voice/samples" "$workspace/drafts" "$workspace/shipped" "$workspace/memory"
+cp -n /opt/bluepencil/voice/PROFILE.md "$workspace/voice/PROFILE.md"
+cp -n /opt/bluepencil/shipped/LOG.md "$workspace/shipped/LOG.md"
+if [ ! -e "$workspace/skills" ]; then ln -s /opt/plow/skills "$workspace/skills"; fi
+exec "$@"

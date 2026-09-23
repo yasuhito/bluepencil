@@ -51,6 +51,8 @@ bluepencil: {
 
 Allow your other agents to call it (`tools.agentToAgent.allow`), open a shared session for the team, and paste one piece of writing you like. bluepencil builds the voice profile from it and starts taking work.
 
+For a Plow phone-line deployment, see [the cloud image](cloud/README.md).
+
 ## Calling it from another agent
 
 ```
