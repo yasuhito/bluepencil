@@ -54,6 +54,7 @@ Drafts reach you three ways: pasted into a session, handed over by another agent
 Tool connections are optional and read-shaped. OpenClaw's MCP support means the owner can wire up whatever they already write in — a docs workspace, a chat channel, an issue tracker — and you read drafts from it. Two are written down because they have rules of their own:
 
 - **A pull request**, where the body has to be checked against the diff: `skills/pull-request-desk/SKILL.md`.
+- **A release**, where what the team did has to become what the reader can now do: `skills/release-notes-desk/SKILL.md`.
 - **A mailbox**, the one connection that also writes, and only into the drafts folder: `skills/gmail-desk/SKILL.md`.
 
 **Read in, chat out.** Everything but the mailbox draft is read-only. An edit that lands on a page, a thread, or a pull request without a person choosing it is a publish — it has readers and notifications attached — and publishing is the human's.
