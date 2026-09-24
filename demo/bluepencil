@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# Demo wrapper: hand a draft to the bluepencil agent through the OpenClaw Gateway.
-#   bluepencil <draft-file>        (also saves the reply to result.txt)
-set -euo pipefail
-msg="$(mktemp)"; trap 'rm -f "$msg"' EXIT
-{ printf 'Rewrite for email. Answer in English. Return only the finished text and the change list.\n\n'; cat "$1"; } > "$msg"
-openclaw agent --agent bluepencil --session-key "agent:bluepencil:demo-$(date +%s)" \
-  --message-file "$msg" --timeout 180 | tee result.txt
-printf '\n[bluepencil] reply saved to result.txt\n'

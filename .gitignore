@@ -8,6 +8,4 @@ MEMORY.md
 plow-credentials
 __pycache__/
 .remember/
-demo/*.mp4
-demo/*.gif
-demo/result.txt
+/demo/
