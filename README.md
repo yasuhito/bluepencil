@@ -78,6 +78,8 @@ The reply is the finished text first, then a short change list. If bluepencil ha
 
 The desk works best where the writing already happens. In Slack, anyone on the team types `/bluepencil <draft>` in the channel they are already in and the edit comes back in that channel, where the rest of the team can see it.
 
+Every edit requested in a Slack channel, whether through `/bluepencil` or a mention, comes back in the same shape: the finished text first, then an **Original** section with your draft, then the numbered **Changes**. Slack does not post slash-command text to the channel, so without Original the draft would not be there to compare. With `ephemeral: false`, everyone in the channel sees all three in a slash reply.
+
 Set up the app, credentials, and routing in steps 1-3. Step 4 is for DMs.
 
 **1. The Slack app.** [api.slack.com/apps/new](https://api.slack.com/apps/new) → **From a manifest**. Paste [`docs/slack-manifest.json`](docs/slack-manifest.json), then **Create**. It uses Socket Mode, so your Gateway needs no public URL.
