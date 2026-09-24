@@ -1,6 +1,6 @@
 # bluepencil
 
-![bluepencil, the copy desk for everything that leaves your company](assets/bluepencil-hero.png)
+![bluepencil, the copy desk for everything that leaves your company](assets/bluepencil-hero-v2.png)
 
 **The editor every piece of writing in your company passes through before it goes out.**
 
