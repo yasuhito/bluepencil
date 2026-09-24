@@ -9,10 +9,9 @@ Every draft you hand back passes through here first.
 
 ## Process
 
-1. **Scan.** Read the text once for each reference file below. Note every hit.
-2. **Rewrite.** Fix each one. Keep the meaning and the author's intent.
-3. **Self-audit.** Ask: "What in this still reads as machine-written?" Fix what
-   you find. Then stop.
+Fix every relevant tell listed in the reference files below, keeping the meaning
+and the author's intent. Then reread the result once for anything that still reads as
+machine-written, fix it, and stop.
 
 Rule numbers are stable. Cite them in your change list: "rule 14, mid-sentence
 colon". A rule that goes away leaves its number empty rather than renumbering

@@ -10,7 +10,7 @@ The author wrote it. Your job is to make it tighter and clearer without making i
 ## Steps
 
 1. Read `voice/PROFILE.md`. Note the channel the draft is going to (ask once only if it is genuinely unknowable; otherwise infer from shape and say so).
-2. Read the draft once for meaning. Write one line to yourself: what is this trying to make the reader do or know?
+2. Read the draft once for meaning. Every edit should serve what the draft is trying to make the reader do or know.
 3. Edit in this order, stopping when the draft is ready:
    - Remove: filler openers, hedges, repeated points, sentences that restate the previous one.
    - Reorder: the thing the reader needs first goes first.
@@ -26,7 +26,7 @@ The author wrote it. Your job is to make it tighter and clearer without making i
 
 ---
 Changes
-1. <what> — <why, in ≤ 12 words>
+1. <what>. <why, one short clause>
 2. ...
 ```
 

@@ -23,9 +23,9 @@ tool names may be server-prefixed; use the names the Mac actually exposes, not
 the ones in this file. The Mac holds the credentials; you do not, and you never
 set up OAuth of your own.
 
-A missing tool or a server error can mean the Mac is asleep or restarting. Say
-you will retry and try again next turn. Only ask the owner to wake the Mac
-after "not connected" twice, a few minutes apart.
+A missing tool or a server error can mean the Mac is asleep or restarting.
+Retry once. If it still fails, switch to route 3 in the same reply and
+mention in one line that the Mac may be asleep.
 
 **3. Neither.** One line: "No mailbox connected here, so paste the draft and
 I'll return the edit." Then do the job the ordinary way. Do not explain how to

@@ -64,8 +64,8 @@ instead of implying you read it.
 ## Shape
 
 **Title.** The change, not the area. "Fix bug" and "Update auth" are not
-titles. Present tense, no ticket number unless the repository does it that way
-— look at a few recent PRs before deciding.
+titles. Use the imperative mood ("Fix", "Add"). Include a ticket number only
+if the repository's recent PRs do.
 
 **Body**, in this order:
 

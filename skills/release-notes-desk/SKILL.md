@@ -30,11 +30,13 @@ Read only.
 ```
 gh release list --limit 5
 gh pr list --state merged --limit 30 --json number,title,mergedAt,labels
-gh pr list --state merged --search "merged:>=2026-09-01" --json number,title,body
+gh pr list --state merged --search "merged:>=<YYYY-MM-DD>" --json number,title,body
 gh issue list --state closed --limit 30 --json number,title,closedAt,labels
 gh pr view <number> --json title,body
-git log --oneline --since=2026-09-01 --first-parent
+git log --oneline --since="<YYYY-MM-DD>" --first-parent
 ```
+
+Replace `<YYYY-MM-DD>` with the start date of the chosen range before running either command.
 
 Two ways to bound the range, and you must pick one and say which: since the
 last release tag, or a date range the owner gave you. Never mix them. No tags
@@ -54,6 +56,8 @@ messages.
 Each line answers one question: **what can the reader do now that they could
 not do before?** A merged title answers what the team did, which is a
 different sentence.
+
+Example (write the notes in the language of the last release, not the PR title):
 
 - `fix(export): 高桁量子ビットラベル・長い測定名・ダーク不透過 PNG の回路レンダリングを修正`
 - → Circuit exports no longer clip long qubit labels or measurement names, and dark-mode PNGs are opaque.

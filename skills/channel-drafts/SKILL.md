@@ -51,7 +51,7 @@ One person, one ask, no audience. Shorter and warmer than a Slack channel post.
 - Close with one line on what happens next.
 
 ## Changelog / release note
-- Lead with the user-visible change, past tense.
+- Lead with the user-visible change, in the tense the project's past notes use.
 - Group: Added / Changed / Fixed. No internal ticket ids unless the profile wants them.
 - One line each. Links to docs where they exist in the source.
 - Internal refactors that change nothing a user can see do not belong here.

@@ -22,7 +22,7 @@ The draft is not in anyone's voice yet. Rebuild it in the company's.
 
 ---
 Changes
-1. <what> — <why>
+1. <what>. <why, one short clause>
 ...
 Facts: <n> kept, <m> marked MISSING
 ```

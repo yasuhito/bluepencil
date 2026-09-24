@@ -1,19 +1,21 @@
 # bluepencil
 
-![bluepencil — the copy desk for everything that leaves your company](assets/bluepencil-hero.png)
+![bluepencil, the copy desk for everything that leaves your company](assets/bluepencil-hero.png)
 
 **The editor every piece of writing in your company passes through before it goes out.**
 
-bluepencil is an [OpenClaw](https://openclaw.ai) agent that owns one job: the copy desk. Humans paste drafts to it. Your other agents send it theirs. It hands back ship-ready text in your company's voice, with every change listed and explained. It never publishes anything — you do.
+bluepencil is an [OpenClaw](https://openclaw.ai) agent that owns one job: the copy desk. Humans paste drafts to it. Your other agents send it theirs. It hands back ship-ready text in your company's voice, with every change listed and explained. It never publishes anything. You do.
 
 Not a censor. A blue pencil shows its marks.
 
 ## What it does
 
-- **Edit** — you wrote it; it gets tighter and clearer and still sounds like you.
-- **Rewrite** — an agent wrote it, or it reads like boilerplate; it gets rebuilt in the company voice for the channel it is going to.
-- **Anti-slop pass** on everything: the tells of machine prose come out.
-- **Channel shapes** for email, Slack, web copy, social, pull requests, support replies, changelogs.
+- **Edit.** You wrote it. It gets tighter and clearer and still sounds like you.
+- **Rewrite.** An agent wrote it, or it reads like boilerplate. It gets rebuilt in the company voice for the channel it is going to.
+- **Anti-slop pass.** Everything gets one; the tells of machine prose come out.
+- **Channel shapes.** Email, Slack, direct messages, web copy, social, pull requests, support replies, changelogs.
+- **Pull requests.** Point it at a PR and it checks the description against the diff, then returns an edited title and body.
+- **Release notes.** It turns merged PRs and closed issues into notes a customer can read.
 - **One voice, on disk.** `voice/PROFILE.md` holds your company's voice as rules with quoted evidence. Every human and every agent that writes gets the same editor.
 
 ## What it never does
@@ -24,7 +26,7 @@ Not a censor. A blue pencil shows its marks.
 
 ## Multiplayer by design
 
-bluepencil is built for OpenClaw 2.0's shared sessions:
+bluepencil is built for OpenClaw's shared sessions:
 
 - **People** join one shared *editing desk* session. Give teammates *Suggest* or *Draft* rights and the workflow enforces itself: bluepencil drafts, a human ships.
 - **Agents** call it with `sessions_send` and get the finished text back in the same turn. Put it in front of your SDR agent's emails, your recruiter agent's candidate replies, your engineer agent's PR descriptions.
@@ -49,7 +51,18 @@ bluepencil: {
 }
 ```
 
-Allow your other agents to call it (`tools.agentToAgent.allow`), open a shared session for the team, and paste one piece of writing you like. bluepencil builds the voice profile from it and starts taking work.
+1. Allow the agents that call bluepencil to reach it. In `~/.openclaw/openclaw.json`, merge this into the existing `tools` object. Add each calling agent and `bluepencil` to `tools.agentToAgent.allow`, keeping any IDs already there. For example, if `main` calls it:
+
+   ```json5
+   {
+     tools: {
+       agentToAgent: { enabled: true, allow: ["main", "bluepencil"] },
+     },
+   }
+   ```
+
+2. In the Control UI, select bluepencil and use **New conversation** to start a session. To work with teammates, follow [Team setup](https://docs.openclaw.ai/start/teams) to give them access to the shared Gateway and session.
+3. Paste one piece of writing you like. bluepencil proposes a voice profile from it and saves the profile after you approve it.
 
 For a Plow phone-line deployment, see [the cloud image](cloud/README.md).
 
@@ -65,7 +78,7 @@ The reply is the finished text first, then a short change list. If bluepencil ha
 
 The desk works best where the writing already happens. In Slack, anyone on the team types `/bluepencil <draft>` in the channel they are already in and the edit comes back in that channel, where the rest of the team can see it.
 
-Five steps, all of which have to be done — missing any one of them fails with a different, unhelpful message.
+Set up the app, credentials, and routing in steps 1-3. Step 4 is for DMs.
 
 **1. The Slack app.** [api.slack.com/apps/new](https://api.slack.com/apps/new) → **From a manifest**. Paste [`docs/slack-manifest.json`](docs/slack-manifest.json), then **Create**. It uses Socket Mode, so your Gateway needs no public URL.
 
@@ -80,7 +93,7 @@ openclaw secrets store set SLACK_BOT_TOKEN --kind secret --value-file - \
 
 Each waits on stdin: paste the token, press enter, then Ctrl-D.
 
-**3. Point Slack at bluepencil.** `bindings` is a whole-array replacement, so include the routes you already have alongside the new one.
+**3. Point Slack at bluepencil.** Write this in `~/.openclaw/openclaw.json`. `bindings` is a whole-array replacement, so include the routes you already have alongside the new one.
 
 ```json5
 {
@@ -102,6 +115,8 @@ Each waits on stdin: paste the token, press enter, then Ctrl-D.
 }
 ```
 
+Your Slack user ID for `allowFrom` is under your profile in Slack. It also appears in the bot's refusal the first time you DM it (step 4).
+
 `ephemeral: false` posts the edit into the channel. Set it to `true` if the edit should be visible only to whoever asked.
 
 **4. Approve yourself for DMs.** Message the bot once. It replies with a pairing code; run what it tells you:
@@ -110,9 +125,9 @@ Each waits on stdin: paste the token, press enter, then Ctrl-D.
 openclaw pairing approve slack <code>
 ```
 
-**5. Restart-free, but not instant.** Slack config changes wait for in-flight work to finish before the channel reloads. Give it a few seconds before the first test.
+Two gates, not one: pairing covers DMs, `allowFrom` covers the slash command. Approving one does not approve the other, and each refuses with its own message: "access not configured" for DMs, "You are not authorized to use this command" for the command.
 
-Two gates, not one: pairing covers DMs, `allowFrom` covers the slash command. Approving one does not approve the other, and each refuses with its own message — "access not configured" for DMs, "You are not authorized to use this command" for the command. Your Slack user id is in the DM refusal, or under your profile in Slack.
+Slack config changes wait for in-flight work to finish before the channel reloads. Give it a few seconds before the first test.
 
 ## Connections
 
@@ -131,11 +146,20 @@ gog auth add you@example.com --remote --step 1 \
   --extra-scopes https://www.googleapis.com/auth/gmail.compose
 ```
 
-Two scopes: read your mail, and create drafts. No send scope, so bluepencil cannot put mail on the wire even by mistake. Every call it makes adds `--gmail-no-send`, which blocks the send paths at the tool level too.
+Open the URL that the `--step 1` command prints and grant access. The final `localhost` page may fail to load; copy the full URL from the address bar and pass it to the `--step 2` command below. Keep that URL out of chat.
 
-Where bluepencil runs in a container and you have connected your Mac, it borrows the Mac's mailbox instead: it lists the skills your Mac publishes, reads the one about mail, and follows that skill's own commands. Your Mac keeps the credentials. See `skills/gmail-desk/SKILL.md` for both routes and the boundary that holds in each.
+```bash
+gog auth add you@example.com --remote --step 2 \
+  --services gmail --gmail-scope readonly \
+  --extra-scopes https://www.googleapis.com/auth/gmail.compose \
+  --auth-url '<callback URL from your browser>'
+```
 
-The loop: you write a rough draft in Gmail, bluepencil edits it and saves the result back to drafts, you open Gmail and press send. A `[MISSING: …]` marker travels into the draft unchanged — the visible gap is what stops a bad send.
+Two scopes: read your mail, and create drafts. No send scope, so bluepencil cannot put mail on the wire even by mistake. On this route, every call it makes adds `--gmail-no-send`, which blocks the send paths at the tool level too.
+
+If bluepencil runs on your own OpenClaw Gateway, connect your Mac using [Mac node mode](https://docs.openclaw.ai/nodes/node-host#mac-node-mode) and approve its pairing. A Plow container uses [Plow Latch](https://github.com/plow-pbc/latch) to reach the Mac instead; OpenClaw node pairing does not connect it to Plow. With the Mac connected, bluepencil lists its published skills, reads the one about mail, and follows that skill's commands. Your Mac keeps the credentials. Without a Mac connection, paste the draft into chat. See `skills/gmail-desk/SKILL.md` for the mailbox boundaries.
+
+The loop: you write a rough draft in Gmail, bluepencil edits it and saves the result back to drafts, you open Gmail and press send. A `[MISSING: …]` marker travels into the draft unchanged. The visible gap is what stops a bad send.
 
 ## Layout
 
@@ -143,12 +167,19 @@ The loop: you write a rough draft in Gmail, bluepencil edits it and saves the re
 AGENTS.md            operating instructions
 SOUL.md              how it thinks
 IDENTITY.md          name, role, look
+USER.md              how the people at the desk like to work
 skills/              edit · rewrite · anti-slop · channel-drafts
                      voice-profile · learn-from-shipped · gmail-desk
+                     pull-request-desk · release-notes-desk
 voice/PROFILE.md     your company voice (rules + quoted evidence)
 voice/samples/       writing you approved
 drafts/              every job: source, result, changes
 shipped/LOG.md       what actually went out
+MEMORY.md            optional local company facts (ignored by Git)
+memory/              local dated notes (.gitkeep is published)
+cloud/               container image for the Plow phone line
+docs/                Slack app manifest
+tools/index-bridge/  token usage reporting to the Agent Index
 ```
 
 ## License
