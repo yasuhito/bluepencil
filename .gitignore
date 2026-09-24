@@ -5,6 +5,7 @@ voice/samples/*
 memory/*
 !memory/.gitkeep
 MEMORY.md
+/DREAMS.md
 plow-credentials
 __pycache__/
 .remember/
