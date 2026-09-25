@@ -20,3 +20,5 @@ jobs:
         run: python -m py_compile tools/index-bridge/agent_index_client.py tools/index-bridge/report_openclaw_usage.py
       - name: Run Agent Index client self-check
         run: python tools/index-bridge/agent_index_client.py --self-check
+      - name: Test OpenClaw usage collection
+        run: python -m unittest discover -s tests -v

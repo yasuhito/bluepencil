@@ -21,6 +21,7 @@ import argparse
 import datetime
 import json
 import sqlite3
+import subprocess
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -56,8 +57,18 @@ def from_openclaw(db_path: Path, days: int):
     out = defaultdict(lambda: defaultdict(lambda: dict.fromkeys(KEYS, 0)))
     con = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True)
     try:
-        cur = con.execute("SELECT event_json FROM transcript_events")
-        for (event_json,) in cur:
+        cur = con.execute("SELECT event_json, event_zstd FROM transcript_events")
+        for event_json, event_zstd in cur:
+            if event_json is None:
+                try:
+                    event_json = subprocess.check_output(
+                        ["zstd", "-d", "-q", "-c"], input=event_zstd,
+                        stderr=subprocess.DEVNULL,
+                    )
+                except FileNotFoundError as exc:
+                    raise RuntimeError("zstd is required to read compressed OpenClaw events") from exc
+                except subprocess.CalledProcessError:
+                    continue
             try:
                 ev = json.loads(event_json)
             except json.JSONDecodeError:
