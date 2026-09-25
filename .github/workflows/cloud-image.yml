@@ -1,0 +1,40 @@
+name: Cloud image
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/cloud-image.yml
+      - cloud/**
+      - skills/**
+      - AGENTS.md
+      - SOUL.md
+      - IDENTITY.md
+      - USER.md
+      - voice/PROFILE.md
+      - shipped/LOG.md
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/cloud-image.yml
+      - cloud/**
+      - skills/**
+      - AGENTS.md
+      - SOUL.md
+      - IDENTITY.md
+      - USER.md
+      - voice/PROFILE.md
+      - shipped/LOG.md
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build cloud image
+        run: docker build --platform linux/amd64 -f cloud/Dockerfile -t bluepencil:ci .
+      - name: Probe cloud image
+        run: docker run --rm --network none --entrypoint /opt/bluepencil/probe bluepencil:ci
