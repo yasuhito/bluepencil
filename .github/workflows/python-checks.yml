@@ -1,0 +1,22 @@
+name: Python checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check Python syntax
+        run: python -m py_compile tools/index-bridge/agent_index_client.py tools/index-bridge/report_openclaw_usage.py
+      - name: Run Agent Index client self-check
+        run: python tools/index-bridge/agent_index_client.py --self-check
