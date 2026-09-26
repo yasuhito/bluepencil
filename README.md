@@ -35,6 +35,20 @@ Every draft it touches is saved with source, result, and change list side by sid
 
 ## Install
 
+### On a Plow phone line
+
+1. Open [bluepencil on the Agent Index](https://aiworthusing.com/agent-index/bluepencil).
+2. Tap **Text this agent**. Your phone opens a text to +1 628 246-3032 that says `Set this up for me: aiworthusing.com/agent-index/bluepencil`.
+3. Send it. On a computer, send that text from your phone instead.
+
+Plow starts bluepencil on a phone line of your own. Text it a draft and it replies with the edit and the list of changes. This version works in Plow chat. Slack and calls from other agents need the self-hosted setup below. To reach your Gmail drafts, connect your Mac with [Plow Latch](https://github.com/plow-pbc/latch).
+
+**Usage reporting.** The phone-line image reports token usage to the [Agent Index](https://aiworthusing.com/agent-index/bluepencil) every five minutes: token counts by day and model, and a random install ID. Your drafts and messages stay out of it. The self-hosted setup below reports nothing.
+
+To build and deploy the image yourself, see [the cloud image](cloud/README.md).
+
+### Self-hosted on an OpenClaw Gateway
+
 You need an OpenClaw Gateway (2026.9 or later).
 
 ```bash
@@ -63,8 +77,6 @@ bluepencil: {
 
 2. In the Control UI, select bluepencil and use **New conversation** to start a session. To work with teammates, follow [Team setup](https://docs.openclaw.ai/start/teams) to give them access to the shared Gateway and session.
 3. Paste one piece of writing you like. bluepencil proposes a voice profile from it and saves the profile after you approve it.
-
-For a Plow phone-line deployment, see [the cloud image](cloud/README.md).
 
 ## Calling it from another agent
 
@@ -181,7 +193,7 @@ MEMORY.md            optional local company facts (ignored by Git)
 memory/              local dated notes (.gitkeep is published)
 cloud/               container image for the Plow phone line
 docs/                Slack app manifest
-tools/index-bridge/  token usage reporting to the Agent Index
+tools/index-bridge/  maintainer's Agent Index reporting for a Gateway (needs a Plow credential)
 ```
 
 ## License
