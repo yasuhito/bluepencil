@@ -18,6 +18,46 @@ Not a censor. A blue pencil shows its marks.
 - **Release notes.** It turns merged PRs and closed issues into notes a customer can read.
 - **One voice, on disk.** `voice/PROFILE.md` holds your company's voice as rules with quoted evidence. Every human and every agent that writes gets the same editor.
 
+## What you get back
+
+An example draft, sent with `Rewrite for email:`.
+
+**The draft**
+
+> Subject: Update regarding the recent service disruption
+>
+> Hi Dana,
+>
+> I hope this email finds you well. I wanted to reach out to provide an update regarding the service disruption that you may have experienced yesterday. Our team has been working tirelessly to delve into the root cause, and we are pleased to inform you that the issue has now been fully resolved. Exports that failed between 2:10 and 3:40 PM UTC will be retried automatically, so no action is required on your part. Please don't hesitate to reach out if you have any further questions or concerns. We truly value your partnership.
+>
+> Best regards,\
+> The Acme Support Team
+
+**What bluepencil sends back**
+
+> Subject: Yesterday's export failures are fixed
+>
+> Hi Dana,
+>
+> Yesterday's service disruption is fixed. Exports that failed between 2:10 and 3:40 PM UTC will be retried automatically, so you don't need to do anything.
+>
+> Sorry for the interruption. If anything still looks wrong, just reply to this email.
+>
+> Thanks,\
+> The Acme Support Team
+
+**Changes**
+
+1. **The subject now says what happened and that it's fixed.** "Update regarding…" made Dana open the email to find out whether she needed to do anything.
+2. **Cut "I hope this email finds you well" and "I wanted to reach out to provide an update."** The news is now in the first line.
+3. **Cut "working tirelessly to delve into the root cause."** It says how hard the team worked, not what Dana needs to know. The draft also never says what the cause was. If you want to name it, add one line: `[MISSING: root cause]`.
+4. **"We are pleased to inform you that the issue has now been fully resolved" → "is fixed."** Same claim, a third as long.
+5. **"No action is required on your part" → "you don't need to do anything."** Plain words. It's still the line she'll look for, so it stays in the first paragraph.
+6. **Added "Sorry for the interruption."** The draft never acknowledged that her exports failed. This adds no new facts.
+7. **"Please don't hesitate to reach out if you have any further questions or concerns" → "If anything still looks wrong, just reply to this email."** It tells her exactly what to do, and when.
+8. **Cut "We truly value your partnership."** It's a stock line and doesn't help her.
+9. **"Best regards" → "Thanks."** Warmer, and it fits a short note.
+
 ## What it never does
 
 - Invent a fact, name, number, price, date, quote, or customer. Gaps stay visible as `[MISSING: …]`.
