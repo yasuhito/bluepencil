@@ -7,12 +7,13 @@
 # BLUEPENCIL_MODEL    model id for bluepencil (default: the Gateway's)
 # BLUEPENCIL_CALLERS  agents allowed to call it (default: the default agent)
 # OPENCLAW_PROFILE    OpenClaw profile to install into (default: none)
+# BLUEPENCIL_REPO     repository to clone (default: GitHub)
 set -eu
 
 # Wrapped so that `curl | sh` reads the whole script before running any of it.
 main() {
   dir=${BLUEPENCIL_DIR:-$HOME/bluepencil}
-  repo=https://github.com/yasuhito/bluepencil
+  repo=${BLUEPENCIL_REPO:-https://github.com/yasuhito/bluepencil}
 
   oc() { openclaw ${OPENCLAW_PROFILE:+--profile "$OPENCLAW_PROFILE"} "$@"; }
 
