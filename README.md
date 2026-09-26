@@ -76,7 +76,7 @@ bluepencil: {
    ```
 
 2. In the Control UI, select bluepencil and use **New conversation** to start a session. To work with teammates, follow [Team setup](https://docs.openclaw.ai/start/teams) to give them access to the shared Gateway and session.
-3. Paste one piece of writing you like. bluepencil proposes a voice profile from it and saves the profile after you approve it.
+3. Paste a draft. To match your company's voice, also paste writing you like; bluepencil proposes a voice profile from it and saves the profile after you approve it.
 
 ## Calling it from another agent
 

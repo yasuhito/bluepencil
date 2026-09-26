@@ -2,7 +2,7 @@
 
 **This is the template. Nothing here is real yet.** Hand bluepencil one piece of
 writing you like and it will fill this in with rules, each quoted from your own
-text. Until then it edits with defaults and says so.
+text. Until then it edits with defaults.
 
 ## Who we are
 - Company / product: unset
@@ -16,7 +16,7 @@ text. Until then it edits with defaults and says so.
 
 <!-- Format: - **Rule.** "quoted example from a sample the human approved" (sample NNN) -->
 
-No rules yet. Run the `voice-profile` skill.
+No rules yet. They come from writing you share with bluepencil.
 
 A rule needs three things: an imperative, a quote from your writing that proves
 it, and the sample it came from. A rule without a quote is a guess, and guesses
