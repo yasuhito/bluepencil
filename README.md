@@ -49,34 +49,20 @@ To build and deploy the image yourself, see [the cloud image](cloud/README.md).
 
 ### Self-hosted on an OpenClaw Gateway
 
-You need an OpenClaw Gateway (2026.9 or later).
+You need an OpenClaw Gateway (2026.9 or later) with a working model.
 
 ```bash
-git clone https://github.com/yasuhito/bluepencil ~/bluepencil
+curl -fsSL https://raw.githubusercontent.com/yasuhito/bluepencil/main/install.sh | sh
 ```
 
-Register it as an agent (JSON5, in `~/.openclaw/openclaw.json` under `agents.entries`):
+The script clones bluepencil to `~/bluepencil`, registers it with its name and emoji, and adds your default agent and bluepencil to `tools.agentToAgent.allow`, keeping the IDs already there. The Gateway picks up the change without a restart. Run it again at any time; it keeps your voice profile and drafts. To choose the model or the calling agents, set `BLUEPENCIL_MODEL` or `BLUEPENCIL_CALLERS`. For example:
 
-```json5
-bluepencil: {
-  workspace: "~/bluepencil",
-  identity: { name: "bluepencil", emoji: "✏️" },
-  model: { primary: "anthropic/claude-opus-5" },   // any strong writing model works
-}
+```bash
+curl -fsSL https://raw.githubusercontent.com/yasuhito/bluepencil/main/install.sh | BLUEPENCIL_MODEL=anthropic/claude-opus-5 BLUEPENCIL_CALLERS="main sales" sh
 ```
 
-1. Allow the agents that call bluepencil to reach it. In `~/.openclaw/openclaw.json`, merge this into the existing `tools` object. Add each calling agent and `bluepencil` to `tools.agentToAgent.allow`, keeping any IDs already there. For example, if `main` calls it:
-
-   ```json5
-   {
-     tools: {
-       agentToAgent: { enabled: true, allow: ["main", "bluepencil"] },
-     },
-   }
-   ```
-
-2. In the Control UI, select bluepencil and use **New conversation** to start a session. To work with teammates, follow [Team setup](https://docs.openclaw.ai/start/teams) to give them access to the shared Gateway and session.
-3. Paste a draft. To match your company's voice, also paste writing you like; bluepencil proposes a voice profile from it and saves the profile after you approve it.
+1. In the Control UI, select bluepencil and use **New conversation** to start a session. To work with teammates, follow [Team setup](https://docs.openclaw.ai/start/teams) to give them access to the shared Gateway and session.
+2. Paste a draft. To match your company's voice, also paste writing you like; bluepencil proposes a voice profile from it and saves the profile after you approve it.
 
 ## Calling it from another agent
 
@@ -179,6 +165,7 @@ The loop: you write a rough draft in Gmail, bluepencil edits it and saves the re
 
 ```
 AGENTS.md            operating instructions
+install.sh           self-hosted install into an OpenClaw Gateway
 SOUL.md              how it thinks
 IDENTITY.md          name, role, look
 USER.md              how the people at the desk like to work
