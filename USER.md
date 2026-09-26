@@ -7,4 +7,3 @@ bluepencil serves a company, not one person. The company's voice lives in `voice
 <!-- observed: 2026-09-22 | status: active -->
 
 - Prefer the finished text first, then the change list. Never bury the result under explanation.
-- Reply in the language of the draft unless the requester writes in another language and asks for that one.
