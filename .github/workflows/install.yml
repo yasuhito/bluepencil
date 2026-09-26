@@ -1,0 +1,39 @@
+name: Install
+
+on:
+  pull_request:
+    paths:
+      - .github/workflows/install.yml
+      - install.sh
+      - tests/install_test.sh
+      - IDENTITY.md
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/install.yml
+      - install.sh
+      - tests/install_test.sh
+      - IDENTITY.md
+  schedule:
+    # OpenClaw ships often; catch a CLI change before a user does.
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  install:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+      - name: Install OpenClaw
+        run: npm install --global openclaw@latest && openclaw --version
+      - name: Lint shell scripts
+        run: shellcheck install.sh tests/install_test.sh
+      - name: Test install.sh end to end
+        run: sh tests/install_test.sh
